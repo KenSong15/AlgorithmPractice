@@ -168,7 +168,7 @@ public class LinkListBasic {
 
         // remove duplicate on unsorted
         private Node removeDuplicate() {
-            ArrayList values = new ArrayList<>();
+            ArrayList<Integer> values = new ArrayList<Integer>();
             int len = this.getlength();
             Node result = this;
 
@@ -380,7 +380,7 @@ public class LinkListBasic {
         Node ll1_50000 = new Node(1, new Node(20, new Node(300, new Node(4000, new Node(50000, null)))));
         Node lln55_10 = new Node(7, new Node(10, new Node(-3, new Node(0, new Node(-55, null)))));
 
-        // addSample();
+        removeDuplicateSample();
 
         System.out.println("====linked list basic done here");
 

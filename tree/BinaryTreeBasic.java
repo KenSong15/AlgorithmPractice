@@ -155,6 +155,8 @@ public class BinaryTreeBasic {
         }
     }
 
+    // todo:print and count all leaf node
+
     // test if add and search working
     public static void addAndSearchSample() {
         Node tree1 = new Node(1, null, null);
