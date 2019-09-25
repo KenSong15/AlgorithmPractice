@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.String;
 
 public class StringBasic {
 
@@ -131,13 +132,36 @@ public class StringBasic {
         System.out.printf("%s given %s shows %d times\n", str, c, count);
     }
 
-    // todo:print all permutations on a given string
+    // print all permutations on a given string
     public static void allPermutations(String str) {
-
+        permutationRecursion("", str);
     }
 
-    // todo:reverse word on given sentence
+    // permutation recursion function
+    public static void permutationRecursion(String perm, String word) {
+        if (word.isEmpty()) {
+            System.out.println(perm + word);
+        } else {
+            for (int i = 0; i < word.length(); i++) {
+                permutationRecursion(perm + word.charAt(i),
+                        word.substring(0, i) + word.substring(i + 1, word.length()));
+            }
+        }
+    }
+
+    // reverse word on given sentence
     public static void reverseWordOnSentence(String sen) {
+        // ArrayList<String> words = new ArrayList<String>();
+        String[] words = sen.split(" ");
+        for (int i = 0; i < words.length; i++) {
+            words[i] = reverseRecursive(words[i]);
+        }
+        StringBuilder sb = new StringBuilder("reversed: ");
+        for (int i = 0; i < words.length - 1; i++) {
+            sb.append(words[i] + " ");
+        }
+        sb.append(words[words.length - 1]);
+        System.out.println(sb.toString());
 
     }
 
@@ -199,11 +223,6 @@ public class StringBasic {
         String digitStr2 = "654321";
         String digitStr3 = "123456a";
         String digitStr4 = "123AEZ456";
-
-        countGivenChar(aStr, 'a');
-        countGivenChar(otStr, '1');
-        countGivenChar(dupStr1, 'a');
-        countGivenChar(dupStr2, 'k');
 
         System.out.println("====String basic done here");
 

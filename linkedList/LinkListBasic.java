@@ -38,6 +38,25 @@ public class LinkListBasic {
             System.out.print(resStr + "\n");
         }
 
+        // get value on given position
+        private int get(int pos) {
+            if (pos != 0) {
+                return this.nextNode.get(pos - 1);
+            } else {
+                return this.value;
+            }
+        }
+
+        // set value on given position
+        private Node set(int pos, int value) {
+            if (pos != 0) {
+                return new Node(this.value, this.nextNode.set(pos - 1, value));
+            } else {
+                this.value = value;
+                return this;
+            }
+        }
+
         // add to tail
         private Node add(int value) {
             if (this.value == Integer.MIN_VALUE) {
@@ -263,7 +282,7 @@ public class LinkListBasic {
         lln_2.printList();
     }
 
-    // to test the cyclecheck functionality
+    // test the cyclecheck functionality
     public static void checkCycleSample() {
         Node ll1_5 = new Node(1, new Node(2, new Node(3, new Node(4, new Node(5, null)))));
 
@@ -278,7 +297,7 @@ public class LinkListBasic {
         ll1_5.checkCycle();
     }
 
-    // to test the last_N functionality
+    // test the last_N functionality
     public static void lastNSample() {
         Node ll1_5 = new Node(1, new Node(2, new Node(3, new Node(4, new Node(5, null)))));
 
@@ -290,7 +309,7 @@ public class LinkListBasic {
         ll1_5.lastN(6);
     }
 
-    // to test reverse functionality
+    // test reverse functionality
     public static void reverseSample() {
         Node ll1_5 = new Node(1, new Node(2, new Node(3, new Node(4, new Node(5, null)))));
         Node ll1_2 = new Node(1, new Node(2, null));
@@ -310,7 +329,7 @@ public class LinkListBasic {
 
     }
 
-    // to test the remore functionality
+    // test the remore functionality
     public static void removeSample() {
         Node ll1 = new Node(1, new Node(2, new Node(3, new Node(4, new Node(5, null)))));
         Node ll2 = new Node(1, new Node(2, new Node(3, new Node(4, new Node(5, null)))));
@@ -340,7 +359,7 @@ public class LinkListBasic {
 
     }
 
-    // to test remove duplicate on unsort linked list
+    // test remove duplicate on unsort linked list
     public static void removeDuplicateSample() {
         Node ll1 = new Node(1, new Node(2, new Node(3, new Node(4, new Node(5, null)))));
         Node ll2 = new Node(1, new Node(2, new Node(3, new Node(4, new Node(4, null)))));
@@ -369,9 +388,57 @@ public class LinkListBasic {
 
     }
 
-    // todo: find the two number sum on stack
+    // todo: find the two number sum on stack, make linked list and print it
     public static void twoSum(Node x, Node y) {
+        int len1 = x.getlength();
+        int len2 = y.getlength();
+        if (len1 == len2) {
+            // same length: add together
+        } else if (len1 > len2) {
+            // x longer
+        } else if (len1 < len2) {
+            // y longer
+        }
+    }
 
+    // eliminate any >10 value to make sure linked list represent a number
+    public static Node twoSumRegulate(Node n) {
+        int len = n.getlength();
+        for (int i = 0; i < len; i++) {
+            int curpos = len - i - 1;
+            int curvalue = n.get(curpos);
+
+            if (curvalue > 9) {
+                if (curpos == 0) {
+                    n.set(curpos, curvalue - 10);
+                    n = n.add(1, 0);
+                } else {
+                    n.set(curpos, curvalue - 10);
+                    n.set(curpos - 1, n.get(curpos - 1) + 1);
+                }
+            }
+        }
+        return n;
+    }
+
+    // todo: attach two linked list for two sum
+    public static Node twoSumAttach(Node head, Node tail) {
+        Node last = head;
+        int headLen = head.getlength();
+        for (int i = 0; i < headLen; i++) {
+            last = last.nextNode;
+
+            if (curvalue > 9) {
+                if (curpos == 0) {
+                    n.set(curpos, curvalue - 10);
+                    n = n.add(1, 0);
+                } else {
+                    n.set(curpos, curvalue - 10);
+                    n.set(curpos - 1, n.get(curpos - 1) + 1);
+                }
+            }
+        }
+        return n;
     }
 
     public static void main(String[] args) {
@@ -379,8 +446,9 @@ public class LinkListBasic {
         Node ll1_5 = new Node(1, new Node(2, new Node(3, new Node(4, new Node(5, null)))));
         Node ll1_50000 = new Node(1, new Node(20, new Node(300, new Node(4000, new Node(50000, null)))));
         Node lln55_10 = new Node(7, new Node(10, new Node(-3, new Node(0, new Node(-55, null)))));
+        Node ll01_5 = new Node(9, new Node(9, new Node(9, new Node(9, new Node(15, null)))));
 
-        removeDuplicateSample();
+        // twoSumRegulate(ll01_5).printList();
 
         System.out.println("====linked list basic done here");
 

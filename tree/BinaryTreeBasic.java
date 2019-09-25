@@ -60,6 +60,20 @@ public class BinaryTreeBasic {
             System.out.print(this.value + " ");
         }
 
+        // print and count all leaf node
+        private void printLeaf() {
+            if (this.leftNode == null && this.rightNode == null) {
+                System.out.println("leaf: " + this.value);
+            } else {
+                if (this.leftNode != null) {
+                    this.leftNode.printLeaf();
+                }
+                if (this.rightNode != null) {
+                    this.rightNode.printLeaf();
+                }
+            }
+
+        }
     }
 
     public static void printInThreeOrderSample() {
@@ -155,8 +169,6 @@ public class BinaryTreeBasic {
         }
     }
 
-    // todo:print and count all leaf node
-
     // test if add and search working
     public static void addAndSearchSample() {
         Node tree1 = new Node(1, null, null);
@@ -188,7 +200,9 @@ public class BinaryTreeBasic {
         Node tree1_5 = new Node(4, new Node(2, new Node(1, null, null), new Node(3, null, null)),
                 new Node(5, null, null));
 
-        addAndSearchSample();
+        tree1.printLeaf();
+        tree1_7.printLeaf();
+        tree1_5.printLeaf();
 
         System.out.println("b_tree done here");
 
