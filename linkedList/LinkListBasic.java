@@ -82,9 +82,13 @@ public class LinkListBasic {
                 System.out.println("out of range: added to tail");
                 result = this.add(value);
                 return result;
-            } else if (pos == 0) {
-                result.nextNode = this;
-                return result;
+            } else if (pos == 0) { // add to a new node's head
+                if (this.value == Integer.MIN_VALUE) {
+                    return result;
+                } else {
+                    result.nextNode = this;
+                    return result;
+                }
             } else {
                 Node current = this;
                 Node inNode = new Node(value);
@@ -155,7 +159,6 @@ public class LinkListBasic {
         private Boolean checkCycle() {
             Node slow = this;
             Node fast = this;
-            // Boolean slow_move = false;
             while (fast.nextNode != null && fast.nextNode.nextNode != null) {
                 fast = fast.nextNode.nextNode;
                 slow = slow.nextNode;
@@ -388,17 +391,37 @@ public class LinkListBasic {
 
     }
 
-    // todo: find the two number sum on stack, make linked list and print it
+    // find the two number sum on stack, make linked list and print it
     public static void twoSum(Node x, Node y) {
-        int len1 = x.getlength();
-        int len2 = y.getlength();
-        if (len1 == len2) {
-            // same length: add together
-        } else if (len1 > len2) {
-            // x longer
-        } else if (len1 < len2) {
-            // y longer
+        int lenX = x.getlength();
+        int lenY = y.getlength();
+        int lenLong = Math.max(lenX, lenY);
+        Node result = new Node();
+        int carryOn = 0;
+
+        for (int i = 0; i < lenLong; i++) {
+            int curposX = lenX - i - 1;
+            int curposY = lenY - i - 1;
+            int digitX = 0;
+            int digitY = 0;
+            if (curposX < 0) {
+                digitX = 0;
+            } else {
+                digitX = x.get(curposX);
+            }
+            if (curposY < 0) {
+                digitY = 0;
+            } else {
+                digitY = y.get(curposY);
+            }
+            // System.out.printf("x: %d y: %d \n", digitX, digitY);
+            result = result.add(digitX + digitY, 0);
+
         }
+        // result.printList();
+        result = twoSumRegulate(result);
+        System.out.println("the two sum result is:");
+        result.printList();
     }
 
     // eliminate any >10 value to make sure linked list represent a number
@@ -421,24 +444,22 @@ public class LinkListBasic {
         return n;
     }
 
-    // todo: attach two linked list for two sum
-    public static Node twoSumAttach(Node head, Node tail) {
-        Node last = head;
-        int headLen = head.getlength();
-        for (int i = 0; i < headLen; i++) {
-            last = last.nextNode;
+    // test two sum
+    public static void twoSumSample() {
+        Node ll01_5 = new Node(9, new Node(9, new Node(9, new Node(9, new Node(15, null)))));
+        Node ll0 = new Node(0, null);
+        Node ll2 = new Node(2, null);
+        Node ll99 = new Node(9, new Node(9, null));
+        Node ll999 = new Node(9, new Node(9, new Node(9, null)));
+        Node ll18 = new Node(1, new Node(8, null));
 
-            if (curvalue > 9) {
-                if (curpos == 0) {
-                    n.set(curpos, curvalue - 10);
-                    n = n.add(1, 0);
-                } else {
-                    n.set(curpos, curvalue - 10);
-                    n.set(curpos - 1, n.get(curpos - 1) + 1);
-                }
-            }
-        }
-        return n;
+        twoSum(ll0, ll0);
+        twoSum(ll0, ll2);
+        twoSum(ll2, ll2);
+        twoSum(ll99, ll2);
+        twoSum(ll2, ll18);
+        twoSum(ll99, ll18);
+        twoSum(ll999, ll18);
     }
 
     public static void main(String[] args) {
@@ -446,9 +467,15 @@ public class LinkListBasic {
         Node ll1_5 = new Node(1, new Node(2, new Node(3, new Node(4, new Node(5, null)))));
         Node ll1_50000 = new Node(1, new Node(20, new Node(300, new Node(4000, new Node(50000, null)))));
         Node lln55_10 = new Node(7, new Node(10, new Node(-3, new Node(0, new Node(-55, null)))));
-        Node ll01_5 = new Node(9, new Node(9, new Node(9, new Node(9, new Node(15, null)))));
 
-        // twoSumRegulate(ll01_5).printList();
+        Node ll01_5 = new Node(9, new Node(9, new Node(9, new Node(9, new Node(15, null)))));
+        Node ll0 = new Node(0, null);
+        Node ll2 = new Node(2, null);
+        Node ll99 = new Node(9, new Node(9, null));
+        Node ll999 = new Node(9, new Node(9, new Node(9, null)));
+        Node ll18 = new Node(1, new Node(8, null));
+
+        twoSumSample();
 
         System.out.println("====linked list basic done here");
 
