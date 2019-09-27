@@ -3,11 +3,11 @@ this folder include multiple sorting algorithm description and implementation:
 -   Selection Sort
 -   Bubble Sort
 -   Recursive Bubble Sort
--   Insertion Sort
+-   Insertion Sort :done
 -   Recursive Insertion Sort
 -   Merge Sort
 -   Iterative Merge Sort
--   Quick Sort
+-   Quick Sort :implement again
 -   Iterative Quick Sort
 -   Heap Sort
 -   Counting Sort
