@@ -1,4 +1,5 @@
-/*todo: QuickSort algorithm:
+/*todo: 
+QuickSort algorithm:
         把数列范围内的最后一个作为pivot,在前面选择一对错位的数并换位,
         然后在更小的范围内重复这个过程.
 
